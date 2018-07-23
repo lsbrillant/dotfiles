@@ -27,22 +27,22 @@ main = do
     xmobarPipe <- spawnPipe "xmobar"
     xmonad $ myConfig xmobarPipe
 
-myConfig xmobarPipe = def {
-            terminal = "xterm",
-            logHook  = myXmobarLogHook xmobarPipe,
+myConfig xmobarPipe = def 
+        { terminal = "xterm"
+        , logHook  = myXmobarLogHook xmobarPipe
             
-            layoutHook = myLayout,
+        , layoutHook = myLayout
 
-            -- defualts + my extras
-            keys       = keys def `mappend` myKeys,
+        -- defualts + my extras
+        , keys       = keys def `mappend` myKeys
             
-            -- on startup make a shell with some fun extras
-            startupHook = spawn "xterm /home/ls_brillant/.special_start",
-            -- REMEBER this is needed for some reason.
-            handleEventHook = mempty <+> docksEventHook,
-            -- colors
-            normalBorderColor  = borderGray,
-            focusedBorderColor = borderOrange
+        -- on startup make a shell with some fun extras
+        , startupHook = spawn "xterm /home/ls_brillant/.special_start"
+        -- REMEBER this is needed for some reason.
+        , handleEventHook = mempty <+> docksEventHook
+        -- colors
+        , normalBorderColor  = borderGray
+        , focusedBorderColor = borderOrange
         }
 
 myXmobarLogHook xmobarPipe = dynamicLogWithPP xmobarPrinter 
