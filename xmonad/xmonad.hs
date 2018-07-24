@@ -13,7 +13,9 @@ import XMonad.Hooks.DynamicLog
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-import XMonad.Util.Run 
+import XMonad.Util.Run
+
+import System.Environment (getEnv) 
 
 -- color pallette
 borderGray   = "#1c1c1c"
@@ -23,11 +25,12 @@ textGray   = "#121212"
 textOrange = "#d79921"
 textAqua   = "#8ec07c"
 
-main = do 
+main = do
+    homeDir <- getEnv "HOME"
     xmobarPipe <- spawnPipe "xmobar"
-    xmonad $ myConfig xmobarPipe
+    xmonad $ myConfig xmobarPipe homeDir
 
-myConfig xmobarPipe = def 
+myConfig xmobarPipe homeDir = def 
         { terminal = "xterm"
         , logHook  = myXmobarLogHook xmobarPipe
             
@@ -37,7 +40,7 @@ myConfig xmobarPipe = def
         , keys       = keys def `mappend` myKeys
             
         -- on startup make a shell with some fun extras
-        , startupHook = spawn "xterm /home/ls_brillant/.special_start"
+        , startupHook = spawn $ "xterm " ++ homeDir ++ "/.special_start"
         -- REMEBER this is needed for some reason.
         , handleEventHook = mempty <+> docksEventHook
         -- colors
