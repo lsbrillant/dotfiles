@@ -8,3 +8,8 @@
 # I want my nvim config but not the plugins
 !.config/nvim
 .config/nvim/plugged/*
+
+
+# Same for xmonad
+.xmonad/*
+!.xmonad/xmonad.hs
