@@ -47,7 +47,7 @@ myWorkspaces = [webWS, mailWS, termWS] ++ (map (show) [4..9])
 
 main = do
     homeDir <- getEnv "HOME"
-    xmobarPipe <- spawnPipe $ "xmobar "+homeDir+".config/xmobar/xmobarrc"
+    xmobarPipe <- spawnPipe $ "xmobar "++homeDir++"/.config/xmobar/xmobarrc"
     xmonad $ myConfig xmobarPipe homeDir
 
 myConfig xmobarPipe homeDir = def 
