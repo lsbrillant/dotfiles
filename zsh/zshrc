@@ -3,7 +3,7 @@
 #export LANG="en_US.UTF-8"
 export TERM="xterm-256color"
 # Path to your oh-my-zsh installation.
-export ZSH=/home/ls_brillant/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -53,6 +53,7 @@ CASE_SENSITIVE="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  kubectl
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -101,9 +102,8 @@ unsetopt AUTO_CD
 EDITOR=`which nvim` && export EDITOR
 
 alias nv="nvim"
-alias startxmonad="startx /home/ls_brillant/.xmonad/xmonad-x86_64-linux"
 
-PATH=$HOME/bin:$PATH && export PATH
+PATH=/usr/local/go/bin:$HOME/go/bin:$HOME/bin:$HOME/.cargo/bin:$PATH && export PATH
 
 escape_slashes() {
     if [[ $# -gt 0 ]]; then
@@ -114,13 +114,29 @@ escape_slashes() {
 }
 
 view () {
-  case $(file --mime-type $1 | cut -d: -f2) in
-      text/*)  $1 ;;
-      application/pdf) zathura $1 ;;
+  ft=`file --mime-type "$1" | cut -d: -f2 | sed 's/ //g'`
+  case $ft in
+      text/*) $EDITOR "$1" ;;
+      image/*) feh "$1" ;;
+      application/pdf) zathura "$1" ;;
+      *) echo "mime-type $ft not supported" ;;
   esac
+}
+
+findings () {
+    taskell ./findings.md
 }
 
 alias clip="xclip -in -selection clipboard"
 
+# Don't show be pycache dir
+alias tree="tree -I __pycache__"
+
+
 source ~/.profile
 source ~/.fzf.zsh
+
+
+autoload -U bashcompinit
+bashcompinit
+

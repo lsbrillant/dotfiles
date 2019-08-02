@@ -2,12 +2,13 @@ Config {
 
    -- appearance
      font =         "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true"
-   , bgColor =      "black"
+   , additionalFonts  = ["xft:FontAwesome:size=10", "xft:FontAwesome:size=9"]
+   , bgColor =      "#282828"
    , fgColor =      "#646464"
    , position =     Top
    , border =       BottomB
-   , borderColor =  "#646464"
-   , iconRoot = ".xmobar-icons"
+   , borderColor =  "#d79921" -- "#646464"
+   , iconRoot = ".config/xmobar/icons"
 
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
@@ -38,12 +39,12 @@ Config {
    , commands = [
 
         -- network activity monitor (dynamic interface resolution)
-          Run DynNetwork     [ "--template" , "<tx>kB/s|<rx>kB/s"
-                             , "--Low"      , "1000"       -- units: kB/s
-                             , "--High"     , "5000"       -- units: kB/s
-                             , "--low"      , "darkgreen"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
+          Run DynNetwork     [ "--template" , "<icon=up-arrow.xbm/> <tx>kB/s <icon=down-arrow.xbm/> <rx>kB/s"
+                             , "--Low"      , "50000"        -- units: B/s
+                             , "--High"     , "100000"       -- units: B/s
+                             , "--low"      , "#98971a"
+                             , "--normal"   , "#d79921"
+                             , "--high"     , "#d65d0e"
                              ] 10
 
         , Run Wireless "wlp3s0"    [ "--template" , "<essid>:" ] 100
@@ -52,40 +53,40 @@ Config {
         , Run MultiCpu       [ "--template" , "<icon=cpu.xbm/> <total>%"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "85"         -- units: %
-                             , "--low"      , "darkgreen"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
+                             , "--low"      , "#98971a"
+                             , "--normal"   , "#d79921"
+                             , "--high"     , "#d65d0e"
                              ] 10
                           
         -- memory usage monitor
         , Run Memory         [ "--template" ,"<icon=mem.xbm/> <usedratio>%"
                              , "--Low"      , "20"        -- units: %
                              , "--High"     , "90"        -- units: %
-                             , "--low"      , "darkgreen"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
+                             , "--low"      , "#98971a"
+                             , "--normal"   , "#d79921"
+                             , "--high"     , "#d65d0e"
                              ] 10
 
         -- battery monitor
-        , Run Battery        [ "--template" , " <acstatus><left>% (<timeleft>)"
+        , Run Battery        [ "--template" , " <leftipat>"
                              , "--Low"      , "10"        -- units: %
                              , "--High"     , "80"        -- units: %
-                             , "--low"      , "darkred"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkgreen"
+                             , "--low"      , "#d65d0e"
+                             , "--normal"   , "#d79921"
+                             , "--high"     , "#98971a"
 
                              , "--" -- battery specific options
-                                       -- discharging status
-                                       , "-o"	, "<icon=power-bat2.xbm/> "
-                                       -- AC "on" status
-                                       , "-O"	, "<icon=power-bat2.xbm/><fc=#dAA520><icon=plus.xbm/></fc>"
+                                       -- using battery status
+                                       , "--off-icon-pattern",  "<fc=#d65d0e><icon=battery-%%.xbm/></fc>"
+                                       -- charging status
+                                       , "--on-icon-pattern",   "<fc=#d79921><icon=battery-chg-%%.xbm/></fc>"
                                        -- charged status
-                                       , "-i"	, "<fc=#006000><icon=power-ac.xbm/></fc> "
+                                       , "--idle-icon-pattern", "<fc=#98971a><icon=battery-full.xbm/></fc>"
                              ] 50
 
         -- time and date indicator 
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
+        , Run Date           "<fc=#a89984>%F (%a) %T</fc>" "date" 10
         
         -- pipe from xmonad
         , Run StdinReader

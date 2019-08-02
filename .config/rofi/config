@@ -1,0 +1,4 @@
+rofi.theme: ./gruvbox-dark.rasi
+rofi.combi-modi: drun,ssh
+rofi.font: Hack 12
+rofi.modi: combi

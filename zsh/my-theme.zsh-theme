@@ -7,9 +7,9 @@ local return_status="%(?:%{$FG[074]%}$prompt_string:%{$fg[red]%}$prompt_string)"
 
 PROMPT="${host_name} ${path_string} ${return_status} %{$reset_color%}"
 
-ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[white]%}("
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[white]%}("
 ZSH_THEME_GIT_PROMPT_SUFFIX=")%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="*"
+ZSH_THEME_GIT_PROMPT_DIRTY=""
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 git_custom_prompt() {
@@ -17,8 +17,9 @@ git_custom_prompt() {
   local branch=$(current_branch)
   if [ -n "$branch" ]; then
     # parse_git_dirty echoes PROMPT_DIRTY or PROMPT_CLEAN (.oh-my-zsh/lib/git.zsh)
-    echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$branch$ZSH_THEME_GIT_PROMPT_SUFFIX "
+    echo "$(parse_git_dirty) $ZSH_THEME_GIT_PROMPT_PREFIX$branch$ZSH_THEME_GIT_PROMPT_SUFFIX "
   fi
 }
+
 
 RPROMPT=$'$(git_custom_prompt)'
