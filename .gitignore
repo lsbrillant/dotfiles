@@ -1,0 +1,9 @@
+
+# Only Add config items explicitly listed here
+.config/*
+
+!.config/nvim
+.config/nvim/plugged/*
+!.config/rofi
+!.config/xmobar
+
