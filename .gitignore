@@ -2,8 +2,9 @@
 # Only Add config items explicitly listed here
 .config/*
 
-!.config/nvim
-.config/nvim/plugged/*
 !.config/rofi
 !.config/xmobar
 
+# I want my nvim config but not the plugins
+!.config/nvim
+.config/nvim/plugged/*
