@@ -19,6 +19,8 @@ brew "ranger"
 brew "ripgrep"
 # Terminal multiplexer / agent controller
 brew "herdr"
+# Parser generator tool (nvim-treesitter `main` shells out to `tree-sitter build`)
+brew "tree-sitter-cli"
 # General-purpose lossless data-compression library
 brew "zlib"
 # Cross-shell prompt for astronauts
