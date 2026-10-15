@@ -1,0 +1,51 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+# Library for command-line editing
+brew "readline"
+# Official Amazon AWS command-line interface
+brew "awscli"
+# Cross-platform make
+brew "cmake"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# Platform built on V8 to build network applications
+brew "node"
+# Python version management
+brew "uv"
+# File browser
+brew "ranger"
+# Search tool like grep
+brew "ripgrep"
+# Terminal multiplexer / agent controller
+brew "herdr"
+# General-purpose lossless data-compression library
+brew "zlib"
+# Cross-shell prompt for astronauts
+brew "starship"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3", link: false
+# Command-line interface for SQLite
+brew "sqlite"
+# Editor of choice
+brew "neovim"
+# Modern, maintained replacement for ls
+brew "eza"
+# A better cd command
+brew "zoxide"
+# Simple terminal UI for git commands
+brew "lazygit"
+# App to build and share containerized applications and microservices
+cask "docker"
+# Developer targeted fonts with a high number of glyphs
+cask "font-hack-nerd-font"
+# Developer targeted fonts with a high number of glyphs
+cask "font-jetbrains-mono-nerd-font"
+# Developer targeted fonts with a high number of glyphs
+cask "font-symbols-only-nerd-font"
+# Grammarly for desktop
+cask "obsidian"
+# Music streaming service
+cask "spotify"
+# App that enables mouse-free UI interaction
+cask "shortcat"

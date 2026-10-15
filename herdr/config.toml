@@ -1,0 +1,59 @@
+onboarding = false
+[ui]
+agent_panel_sort = "spaces"
+# mouse_capture = false
+
+
+[theme]
+name = "terminal"
+auto_switch = false
+
+
+[keys]
+# vim keys for workspace nav
+navigate_workspace_up = "k"
+navigate_workspace_down = "j"
+
+navigate_pane_left = "ctrl+h"
+navigate_pane_down = "ctrl+j"
+navigate_pane_up = "ctrl+k"
+navigate_pane_right = "ctrl+l"
+
+# move the current tab, like tmux swap-window on prefix+S-Left/Right (see herdr/move-tab.sh)
+[[keys.command]]
+key = "prefix+shift+left"
+type = "shell"
+command = "~/.config/herdr/move-tab.sh left"
+description = "move tab left"
+
+[[keys.command]]
+key = "prefix+shift+right"
+type = "shell"
+command = "~/.config/herdr/move-tab.sh right"
+description = "move tab right"
+
+# seamless ctrl+h/j/k/l across panes and nvim splits (see herdr/nav.sh)
+[[keys.command]]
+key = "ctrl+h"
+type = "shell"
+command = "~/.config/herdr/nav.sh left"
+description = "navigate left (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "shell"
+command = "~/.config/herdr/nav.sh down"
+description = "navigate down (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "shell"
+command = "~/.config/herdr/nav.sh up"
+description = "navigate up (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "shell"
+command = "~/.config/herdr/nav.sh right"
+description = "navigate right (vim/herdr)"
+
